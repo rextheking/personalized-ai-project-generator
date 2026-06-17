@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# AWS SAM
+.aws-sam/
+samconfig.toml.bak
+
+# AWS CDK
+cdk.out/
+infrastructure/cdk.context.json
+
+# Build artifacts
+backend/package/
+*.zip
+
+# Environment and secrets
+.env
+.env.*
+*.pem
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+
+# Blog draft, kept local, not part of the public repo
+blog/
+
+# Frontend local config (generated at deploy time)
+frontend/config.js

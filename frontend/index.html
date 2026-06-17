@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personalized AI Project Generator</title>
+  <meta
+    name="description"
+    content="Generate AWS project ideas tailored to your skill level, then get a step by step build plan. Powered by Strands Agents and Amazon Bedrock."
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>Personalized AI Project Generator</h1>
+    <p class="tagline">
+      <span class="tagline-line">Tell the agent your AWS background.</span>
+      <span class="tagline-line">Get project ideas built for your level, then a step by step plan for the one you pick.</span>
+    </p>
+  </header>
+
+  <main class="container">
+    <section class="panel" aria-label="Build your request">
+      <form id="request-form">
+        <div class="field">
+          <label for="skill-level">Your skill level</label>
+          <select id="skill-level" name="skill-level">
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="background">Your background (optional)</label>
+          <input
+            type="text"
+            id="background"
+            name="background"
+            placeholder="e.g. AWS Certified Cloud Practitioner"
+          />
+        </div>
+
+        <div class="field">
+          <label for="interests">Topics or services you want to practice</label>
+          <input
+            type="text"
+            id="interests"
+            name="interests"
+            placeholder="e.g. serverless, api, dynamodb"
+          />
+        </div>
+
+        <div class="field">
+          <label for="time">Time you have</label>
+          <input
+            type="text"
+            id="time"
+            name="time"
+            placeholder="e.g. an afternoon"
+          />
+        </div>
+
+        <div class="actions">
+          <button type="submit" id="generate-btn">Generate project ideas</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel output" aria-label="Agent response">
+      <div id="status" class="status" role="status"></div>
+      <article id="response" class="response"></article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      <span class="footer-line">Built with the Strands Agents SDK and Amazon Bedrock.</span>
+      <span class="footer-line">This is a learning tool, always review AWS guidance before deploying real resources.</span>
+    </p>
+  </footer>
+
+  <!-- config.js is generated at deploy time and sets window.API_ENDPOINT -->
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
