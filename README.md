@@ -1,14 +1,9 @@
 # Personalized AI Project Generator
 
-An AI advisor that turns your AWS background into hands-on project ideas, then
-hands you a step by step build plan for the one you pick. The reasoning runs on
-an agent built with the [Strands Agents SDK](https://strandsagents.com) and
-Amazon Bedrock. The whole thing ships as a web app you can deploy to AWS and
+An AI project generator that turns your AWS background/experience into hands-on project ideas, then hands you a plan to build it. The reasoning runs on an agent built with the [Strands Agents SDK](https://strandsagents.com) and Amazon Bedrock. The whole thing ships as a web app you can deploy to AWS and
 share with anyone.
 
-This is the practical follow on to the Amazon Q Developer CLI project generator.
-Same idea, different engine. Instead of prompting a CLI, you build the advisor
-yourself as a real agent and put a browser front end on it.
+This is the practical follow on to the [Amazon Q Developer CLI project generator](https://aws.amazon.com/blogs/training-and-certification/from-theory-to-practice-using-amazon-q-developer-cli-to-generate-tailored-aws-projects/). Very similar idea but with a different engine. Instead of prompting a CLI, you build the advisor yourself as a real agent and put a browser front end on it.
 
 ## What you get
 
@@ -61,18 +56,13 @@ personalized-ai-project-generator/
 
 ## Prerequisites
 
-- An AWS account with permissions for Lambda, API Gateway, S3, CloudFront and
-  IAM
-- [Amazon Bedrock model access](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html)
-  enabled for Claude in your region
+- An AWS account with permissions for Lambda, API Gateway, S3, CloudFront and IAM
+- [Amazon Bedrock model access](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html) enabled for Claude in your region
 - Python 3.12
-- Node.js and the [AWS CDK CLI](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html)
-  (`npm install -g aws-cdk`)
-- The [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html),
-  configured with your credentials
+- Node.js and the [AWS CDK CLI](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html) (`npm install -g aws-cdk`)
+- The [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html), configured with your credentials
 
-The Lambda dependencies are bundled locally with pip, so you do not need Docker
-or the SAM CLI to deploy.
+The Lambda dependencies are bundled locally with pip, so you do not need Docker or the SAM CLI to deploy.
 
 ## Run the agent locally first
 
@@ -111,10 +101,8 @@ make deploy       # provision Lambda, API Gateway, S3 and CloudFront
 make upload-web   # write config.js, upload the frontend, invalidate the cache
 ```
 
-`make deploy` prints the stack outputs, including the website URL and the API
-endpoint. `make upload-web` reads those outputs, points the frontend at the live
-API and pushes it to S3. The first CloudFront deploy takes a few minutes to
-propagate.
+`make deploy` prints the stack outputs, including the website URL and the API endpoint. 
+`make upload-web` reads those outputs, points the frontend at the live API and pushes it to S3. The first CloudFront deploy takes a few minutes to propagate.
 
 To see the outputs again later:
 
@@ -130,8 +118,7 @@ make destroy
 
 ## How the agent is built
 
-The agent lives in `backend/agent/generator.py`. It uses a `BedrockModel`, a
-system prompt that frames it as an AWS project advisor and two custom tools.
+The agent lives in `backend/agent/generator.py`. It uses a `BedrockModel`, a system prompt that frames it as an AWS project advisor and two custom tools.
 
 ```python
 from strands import Agent
@@ -145,18 +132,14 @@ agent = Agent(
 )
 ```
 
-The tools in `backend/agent/tools.py` use the `@tool` decorator. The model reads
-each function's docstring and type hints to decide when to call it.
+The tools in `backend/agent/tools.py` use the `@tool` decorator. The model reads each function's docstring and type hints to decide when to call it.
 
 ## Security notes
 
 - The Lambda role only allows `bedrock:InvokeModel`. Nothing else.
-- The S3 bucket blocks all public access. CloudFront reads it through an Origin
-  Access Control, so the bucket is never exposed directly.
-- CORS is open (`*`) by default to keep first deploys simple. Lock
-  `ALLOWED_ORIGIN` down to your CloudFront domain for anything beyond a demo.
-- There is no auth on the API. Add API keys, usage plans or Cognito before you
-  put it in front of real traffic, since every call costs Bedrock tokens.
+- The S3 bucket blocks all public access. CloudFront reads it through an Origin Access Control, so the bucket is never exposed directly.
+- CORS is open (`*`) by default to keep first deploys simple. Lock `ALLOWED_ORIGIN` down to your CloudFront domain for anything beyond a demo.
+- There is no auth on the API. Add API keys, usage plans or Cognito before you put it in front of real traffic, since every call costs Bedrock tokens.
 
 ## Cleaning up
 
@@ -165,9 +148,7 @@ cd infrastructure
 make destroy
 ```
 
-This removes the Lambda, API, bucket and CloudFront distribution. The S3 bucket
-is set to auto-delete its objects, so the teardown is clean. CloudFront takes a
-little while to fully delete in the background, which is normal.
+This removes the Lambda, API, bucket and CloudFront distribution. The S3 bucket is set to auto-delete its objects, so the teardown is clean. CloudFront takes a little while to fully delete in the background, which is normal.
 
 ## Where to take it next
 
