@@ -3,7 +3,7 @@
 An agentic project generator that turns your AWS background/experience into hands-on project ideas, then hands you a plan to build it. The reasoning runs on an agent built with the [Strands Agents SDK](https://strandsagents.com) and Amazon Bedrock. The whole thing ships as a web app you can deploy to AWS and
 share with anyone.
 
-This is the practical follow on to the [Amazon Q Developer CLI project generator](https://aws.amazon.com/blogs/training-and-certification/from-theory-to-practice-using-amazon-q-developer-cli-to-generate-tailored-aws-projects/). Very similar idea but with a different engine. Instead of prompting a CLI, you build the advisor yourself as a real agent and put a browser front end on it. You can find the full blog post explaining this in more details [here]()
+This is the practical follow on to the [Amazon Q Developer CLI project generator](https://aws.amazon.com/blogs/training-and-certification/from-theory-to-practice-using-amazon-q-developer-cli-to-generate-tailored-aws-projects/). Very similar idea but with a different engine. Instead of prompting a CLI, you build the advisor yourself as a real agent and put a browser front end on it. You can find the full blog post explaining this in more details [here](https://builder.aws.com/content/3FHEWNRlcZDqe1QJqNe8wiZHWyj/build-an-agentic-cloud-project-generator)
 
 ## What you get
 
